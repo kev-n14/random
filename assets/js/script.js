@@ -1,5 +1,5 @@
 var pos = 0,
-    test, test_status, question, choice, choices, chA, chB, chC, chD, correct = 0;
+    buttons, test, test_status, question, choice, choices, chA, chB, chC, chD, correct = 0;
 // const myImage = new Image(100, 600);
 // // myImage.src = 'assets/images/question1.jpg';
 // document.body.appendChild(myImage);
@@ -41,6 +41,7 @@ function get(x) {
 }
 
 function renderQuestion() {
+    buttons = get("buttons");
     test = get("test");
     if (pos >= questions.length) {
         test.innerHTML = "<h2>You got " + correct + " of " + questions.length + " questions correct</h2>";
@@ -66,14 +67,14 @@ function renderQuestion() {
     //Add <img> element to DOM with source
     test.innerHTML += "<img src=\"" + img + "\" width=\"200\" height=\"200\"><br>";
 
-    test.innerHTML += "<label class='answers'> <input type='radio' name='choices' value='A'> " + chA + "</label><be>";
-    test.innerHTML += "<label class='answers'> <input type='radio' name='choices' value='B'> " + chB + "</label><be>";
-    test.innerHTML += "<label class='answers'> <input type='radio' name='choices' value='C'> " + chC + "</label><be>";
-    test.innerHTML += "<label class='answers'> <input type='radio' name='choices' value='D'> " + chD + "</label><br><be>";
+    test.innerHTML += "<div class='choices'><label class='answers'> <input type='radio' name='choices' value='A'> " + chA + "</label>" +
+        "<label class='answers'> <input type='radio' name='choices' value='B'> " + chB + "</label>" +
+        "<label class='answers'> <input type='radio' name='choices' value='C'> " + chC + "</label>" +
+        "<label class='answers'> <input type='radio' name='choices' value='D'> " + chD + "</label></div>";
 
-    test.innerHTML += "<button onclick=''>Prev</button>";
-    test.innerHTML += "<button onclick=''>Next</button>";
-    test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+    test.innerHTML += "<div class='buttons'><button onclick='' class='btn-grid'>Prev</button>" +
+        "<button onclick=''class='btn-grid'>Next</button>" +
+        "<button onclick='checkAnswer()'class='btn-grid'>Submit Answer</button></div>";
 
 }
 

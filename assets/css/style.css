@@ -35,7 +35,7 @@ header {
 nav {
     height: 10vh;
     display: flex;
-
+    overflow: hidden;
 }
 
 .nav-bar {
@@ -48,7 +48,7 @@ nav {
     flex: 1;
     font-size: 1em;
     color: #3a3a3a;
-    max-width: 40%;
+    max-width: 43%;
 
 }
 
@@ -66,12 +66,13 @@ nav {
     font-family: 'PT Serif', serif;
 }
 
-
-
-.logo {
+#logo {
     padding: 5px;
-    height: 110%;
+    height: 100%;
     width: auto;
+    align-items: center;
+    justify-content: center;
+
 }
 
 img {
@@ -94,6 +95,10 @@ img {
 /* End Header */
 
 /* Main Section */
+h3 {
+    font-size: 1.3em;
+}
+
 .container {
     max-width: 90%;
     max-height: 50%;
@@ -124,6 +129,7 @@ img {
 #user-score,
 #currentQ {
     color: #DB2727;
+
 }
 
 #total-score,
@@ -158,7 +164,31 @@ img {
     padding: 10px;
 }
 
+.btn-grid {
 
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #DB2727;
+    font-size: large;
+    font-weight: bold;
+    box-shadow: 0 6px 12px -2px rgba(#f27813, .15);
+    background: #2F648E;
+    border-radius: 4px;
+    padding: 8px;
+    color: beige;
+    margin: 6px;
+    cursor: pointer;
+
+}
+
+.btn-grid:hover {
+    color: black;
+    background: #64B9E0;
+    padding: 15px;
+}
 
 .btn {
     font-size: large;
@@ -172,10 +202,28 @@ img {
     cursor: pointer;
 }
 
+
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+
 .btn:hover {
     color: black;
     background: #64B9E0;
     padding: 15px;
+}
+
+.choices {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+
 }
 
 .options {
