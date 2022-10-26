@@ -3,7 +3,7 @@ const answers = document.getElementsByClassName("answers");
 
 // const answerHistory = [];
 var pos = 0,
-    buttons, questionArea, content, question, choice, choices, chA, chB, chC, chD, correct = 0;
+    buttons, questionArea, score, question, choice, choices, chA, chB, chC, chD, correct = 0;
 
 var questions = [{ //1
     question: "How many Infinity Stones are there?",
@@ -47,9 +47,19 @@ function renderQuestion() {
     questionArea = get("questionArea");
 
     if (pos >= questions.length) {
-        questionArea.innerHTML = "<h2>You got " + correct + " of " + questions.length + " questions correct</h2>";
-        get("content").innerHTML = "questionArea completed";
+        questionArea.innerHTML = `<h2>You got  ${correct} of ${questions.length} questions correct</h2>`;
+        get("score").innerHTML = "You Have Completed The Quiz";
 
+        if (correct == 5) {
+            questionArea.innerHTML = `Congratulations You scored ${correct}/5. You know your marvel movies`;
+        }
+        else if (correct < 5 && correct >= 3) {
+            questionArea.innerHTML = `You scored ${score}/5 .Not bad`;
+        }
+        else if (correct < 3 && correct >= 0) {
+            questionArea.innerHTML = `You scored ${correct}/5 .Watch the movies again`;
+        }
+        questionArea.innerHTML += "<div class='buttons'><button onclick='restartBtn()' class='btn-grid' id='restartBtn'>Restart</button>"
         pos = 0;
         correct = 0;
 
@@ -63,10 +73,11 @@ function renderQuestion() {
     chD = questions[pos].d;
     img = questions[pos].img;
 
-    get("content").innerHTML = `<h3>Question ${pos + 1} of ${questions.length}</h3>`;
+    get("questionTracker").innerHTML = `<h3>Question: </h3> <p>${pos + 1} of ${questions.length}</p>`;
+    get("score").innerHTML = `<h3>Score: </h3> <p>${correct} of ${questions.length}</p>`;
     questionArea.innerHTML = "<h3>" + question + "</h3>";
 
-    questionArea.innerHTML += "<img src=\"" + img + "\" width=\"200\" height=\"200\"><br>";
+    questionArea.innerHTML += "<img src=\"" + img + "\" class='questionImage'>";
 
     questionArea.innerHTML += "<div class='choices'><label class='answers'> <input type='radio' name='choices' value='A'> " + chA + "</label>" +
         "<label class='answers'> <input type='radio' name='choices' value='B' id='b'> " + chB + "</label>" +
@@ -85,9 +96,10 @@ function checkAnswer() {
     // const answerHistory = [];
 
     for (var i = 0; i < choices.length; i++) {
+
         if (choices[i].checked) {
             choice = choices[i].value;
-
+            console.log("this is " + choice);
 
         }
     }
@@ -103,15 +115,16 @@ function checkAnswer() {
 }
 function next() {
 
+    if (pos >= questions.length) {
+        pos = pos;
+    }
     pos++;
-
     renderQuestion();
 }
 
 function prev() {
 
     if (pos >= 1) {
-
         pos--;
         answerHistory[pos] = choices;
 
@@ -123,13 +136,10 @@ function prev() {
 function restartBtn() {
 
     pos = 0,
-        buttons, questionArea, content, question, choices, chA, chB, chC, chD, correct = 0;
+        buttons, questionArea, score, question, choice, choices, chA, chB, chC, chD, correct = 0;
 
-
-    for (var i = 0; i < choices.length; i++) {
-        choice = 0;
-    }
     renderQuestion();
 }
+
 
 window.addEventListener("load", renderQuestion);
